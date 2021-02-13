@@ -1,0 +1,1 @@
+rd /s /q build dist bgetlib.egg-info
