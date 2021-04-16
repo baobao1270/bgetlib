@@ -1,0 +1,12 @@
+[2.0.0] "HB Ling"
+ Updated 2021-04-16
+  - [NEW] Can get ranking of category.
+  - [NEW] Can get and download emote packages.
+  - [NEW] Version getter `__version__` and other metadata getter.
+  - [NEW] Now we have version code. The first code is "HB Ling", for version 2 developing is started at 2020/04/12, the birthday of Yuezheng Ling.
+  - [CHANGE] All API names changed to satisfy PEP8 standard.
+  - [CHANGE] Now use wrapper instead of lambda as download progress callback.
+  - [IMPROVE] Add tests and reStructuredText API references.
+
+[1.0.0]
+ - Initial Commit

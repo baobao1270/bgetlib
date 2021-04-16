@@ -1,27 +1,37 @@
 import setuptools
+import bgetlib
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
+
+with open("requirements-install.txt", "r", encoding="utf-8") as f:
+    install_requires = f.read().strip().replace("\r", "").split("\n")
+
+with open("requirements.txt", "r", encoding="utf-8") as f:
+    tests_require = install_requires + f.read().strip().replace("\r", "").split("\n")
 
 setuptools.setup(
-    name="bgetlib",
-    version="1.0.0",
-    author="Joseph Chris",
-    author_email="joseph@josephcz.xyz",
-    description="A bilibili API library",
+    name=bgetlib.__title__,
+    version=bgetlib.__version__,
+    author=bgetlib.__author__,
+    author_email=bgetlib.__author_email__,
+    description=bgetlib.__description__,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/baobao1270/bgetlib",
-    packages=["bgetlib", "bgetlib.Data"],
-    install_requires=[
-        "xyz.josephcz.dict2class>=1.0.0",
-        "xyz.josephcz.dictmapper>=1.1.0",
-        "requests>=2.25.1"
-    ],
+    url=bgetlib.__url__,
+    license=bgetlib.__license__,
+    packages=["bgetlib"],
+    package_data={'': ['LICENSE']},
+    tests_require=tests_require,
+    install_requires=install_requires,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.8',
+    project_urls={
+        "Source": bgetlib.__source__,
+        "Documentation": ""
+    }
 )
