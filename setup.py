@@ -32,6 +32,6 @@ setuptools.setup(
     python_requires='>=3.8',
     project_urls={
         "Source": bgetlib.__source__,
-        "Documentation": ""
+        "Documentation": bgetlib.__documentation_url__
     }
 )

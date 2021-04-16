@@ -10,3 +10,7 @@ dl.py.method .viewcode-link {
     position: relative;
     left: 6em;
 }
+
+.sphinxsidebarwrapper {
+    padding: 10px 8px !important;
+}

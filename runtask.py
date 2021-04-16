@@ -3,11 +3,26 @@ import sys
 
 configuration = {
     "clear": {
+        "cmd": ["rd /s /q build dist bgetlib.egg-info test\\temp"],
+        "require": [],
+        "fail_ok": True
+    },
+    "clear-cover": {
         "cmd": [
-            "rd /s /q build dist bgetlib.egg-info htmlcov test\\temp doc\\_build",
+            "rd /s /q htmlcov",
             "del /s /q /f .coverage"
         ],
         "require": [],
+        "fail_ok": True
+    },
+    "clear-doc": {
+        "cmd": ["rd /s /q doc\\_build"],
+        "require": [],
+        "fail_ok": True
+    },
+    "clear-all": {
+        "cmd": [],
+        "require": ["clear", "clear-cover", "clear-doc"],
         "fail_ok": True
     },
     "makedoc": {
@@ -15,7 +30,7 @@ configuration = {
             "cd doc && make html",
             "cd .."
         ],
-        "require": ["clear"],
+        "require": ["clear-doc"],
     },
     "test": {
         "cmd": ["python -m unittest discover -v -s test -p *.py {args}"],
@@ -23,15 +38,23 @@ configuration = {
     },
     "cover": {
         "cmd": ["coverage run -m unittest discover -v -s test -p *.py && coverage report && coverage html"],
-        "require": ["clear"]
+        "require": ["clear-cover"]
     },
     "build": {
         "cmd": ["python setup.py sdist bdist_wheel"],
-        "require": ["cover"]
+        "require": ["clear"]
     },
     "upload": {
         "cmd": ["python -m twine upload dist/*"],
-        "require": ["build"]
+        "require": ["cover", "build"]
+    },
+    "uphtml": {
+        "cmd": [
+            "ssh hkg rm -rf \"/var/www/htdocs/bgetlib/* && mkdir /var/www/htdocs/bgetlib/cover\"",
+            "scp -r ./doc/_build/html/* hkg:/var/www/htdocs/bgetlib/",
+            "scp -r ./htmlcov/* hkg:/var/www/htdocs/bgetlib/cover/",
+        ],
+        "require": ["makedoc"]
     }
 }
 

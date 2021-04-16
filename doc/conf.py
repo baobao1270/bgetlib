@@ -18,7 +18,9 @@ sys.path.insert(0, path.abspath(path.join(path.dirname(__file__), "..")))
 # -- Project information -----------------------------------------------------
 
 project = 'bgetlib'
-copyright = '2021 Joseph Chris, MIT License'
+copyright = '2021 Joseph Chris'
+license_name = "MIT License"
+license_url = "https://github.com/baobao1270/bgetlib/LICENSE"
 author = 'Joseph Chris'
 
 
@@ -54,7 +56,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'python_docs_theme'
+html_theme_path = ['.']
+html_theme = 'theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -63,6 +66,7 @@ html_static_path = ['_static']
 html_css_files = [
     'custom.css'
 ]
+html_sidebars = {"**": ['globaltoc.html', 'links.html', 'relations.html', 'sourcelink.html', 'searchbox.html']}
 
 
 # -- Extension configuration -------------------------------------------------
