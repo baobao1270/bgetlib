@@ -1,0 +1,42 @@
+targets:
+- name: build
+  prerequisites: []
+  script: |
+    rd /S /Q dist
+    python -m venv build.venv
+    call build.venv\Scripts\activate
+    pip3 install -r requirements.txt
+    pip3 install -r requirements-dev.txt
+    pip3 install setuptools wheel
+    setup.py sdist bdist_wheel
+    call build.venv\Scripts\deactivate
+    for /D %%i in (*.egg-info) do rd /S /Q "%%i"
+    rd /S /Q build.venv build
+
+- name: install
+  prerequisites: [clean, build]
+  script: |
+    python -m venv install.venv
+    call install.venv\Scripts\activate
+    for %%i in (dist\*.whl) do pip3 install "%%i"
+
+- name: upload
+  prerequisites: [clean, build]
+  script: |
+    @echo "To avoid error, please use: twine upload dist\*"
+
+- name: docs
+  prerequisites: []
+  script: |
+    rd /s /q doc\_build
+    call venv\Scripts\activate
+    cd doc
+    make html
+
+- name: clean
+  script: |
+    call build.venv\Scripts\deactivate
+    for /D %%i in (*.egg-info) do rd /S /Q "%%i"
+    rd /S /Q build.venv build
+    rd /S /Q dist install.venv 
+    set BUILD_VERSION=

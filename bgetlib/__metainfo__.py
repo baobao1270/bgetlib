@@ -1,0 +1,7 @@
+__title__ = "bgetlib"
+__description__ = "A BiliBili API library"
+__source__ = "https://github.com/baobao1270/bgetlib"
+__url__ = "https://bgetlib.docs.josephcz.xyz/"
+__author__ = "Joseph Chris"
+__author_email__ = "joseph@josephcz.xyz"
+__license__ = "MIT"

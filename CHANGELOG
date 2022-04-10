@@ -1,0 +1,38 @@
+[3.2.2]
+ Updated 2022-04-09
+  - [CHANGE] FFmpeg temporary removed from package
+
+[3.2.1]
+ Updated 2022-01-27
+  - [FIX] Always retry when remote close the connection
+  - [FIX] Find ffmpeg on linux now works correctly
+
+[3.2.0]
+ Updated 2021-12-16
+  - [FIX] Fix issue #2, #3, #4
+  - [ADD] Partial download
+  - [CHANGE] Restruct the API, please read the docs
+
+[3.1.0]
+ Updated 2021-12-14
+ Please note that most APIs are changed.
+  - [NEW] Support 4K, HDR and Dolby resource download.
+  - [NEW] Utils for bv2av, av2bv.
+  - [CHANGE] All APIs results are in the dictionary format.
+  - [CHANGE] Codec now use a different API.
+  - [DELETE] Category and tags APIs are deleted. Use archive API instead.
+  - [DELETE] The whole Downloader class is merged into BilibiliAPI class.
+  - [DELETE] Remove audio codec support.
+
+[2.0.0]
+ Updated 2021-04-16
+  - [NEW] Can get ranking of category.
+  - [NEW] Can get and download emote packages.
+  - [NEW] Version getter `__version__` and other metadata getter.
+  - [NEW] Now we have version code. The first code is "HB Ling", for version 2 developing is started at 2020/04/12, the birthday of Yuezheng Ling.
+  - [CHANGE] All API names changed to satisfy PEP8 standard.
+  - [CHANGE] Now use wrapper instead of lambda as download progress callback.
+  - [IMPROVE] Add tests and reStructuredText API references.
+
+[1.0.0]
+ - Initial Commit
