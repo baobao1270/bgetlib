@@ -109,8 +109,11 @@ class BilibiliAPI:
 
         result_quality.dolby_vision = (video["id"] == 126)
         result_quality.dolby_audio = (stream_urls.get("dolby", None) is not None)
+        result_quality.flac_audio = (stream_urls.get("audio", None) is not None)
         if result_quality.dolby_audio:
             audio = stream_urls["dolby"]["audio"][0]
+        if result_quality.flac_audio:
+            audio = stream_urls["flac"]["audio"]
         return {"audio": audio["base_url"], "video": video["base_url"], "quality": result_quality}
 
     def get_stream(self, url: str, tag: str = "", chunk_size: int = 8192, callback: StreamCallback = None) -> bytes:
@@ -137,4 +140,4 @@ class BilibiliAPI:
             video_stream = self.get_stream(stream_url["video"], "video", chunk_size, callback)
             return codec.merge(audio_stream, video_stream, dest_file)
         quality: QualityOptions = stream_url["quality"]
-        return codec.extract_audio(audio_stream, dest_file, quality.dolby_audio)
+        return codec.extract_audio(audio_stream, dest_file, quality)

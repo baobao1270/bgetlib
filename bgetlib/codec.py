@@ -3,6 +3,8 @@ import uuid
 import shutil
 import subprocess
 from typing import Optional
+
+from .models import QualityOptions
 from .utils import find_ffmpeg
 
 
@@ -41,20 +43,24 @@ def merge(audio: bytes, video: bytes, dest: str) -> subprocess.CompletedProcess:
     :return: `CompletedProcess`
     """
     with TempFile(extension="mp4") as output, TempFile(audio) as audio_file, TempFile(video) as video_file:
-        result = _run(f"-i {audio_file} -i {video_file} -c copy {output}")
+        result = _run(f"-i {audio_file} -i {video_file} -c copy -strict experimental {output}")
         shutil.copy(output.path, dest)
     return result
 
 
-def extract_audio(audio: bytes, dest: str, is_dolby: bool) -> subprocess.CompletedProcess:
+def extract_audio(audio: bytes, dest: str, quality: QualityOptions) -> subprocess.CompletedProcess:
     """Extract the audio from MP4 container stream
 
     :param audio: bytes of audio stream
     :param dest: destination of output file
-    :param is_dolby: weather the codec is dolby (AC-3 or EC-3)
+    :param quality: Quality Options, contain dolby_audio: bool, flac_audio: bool
     :return: `CompletedProcess`
     """
-    extension = "ac3" if is_dolby else "aac"
+    extension = "aac"
+    if quality.dolby_audio:
+        extension = "ac3"
+    if quality.flac_audio:
+        extension = "flac"
     with TempFile(extension=extension) as output, TempFile(audio) as audio_file:
         result = _run(f"-i {audio_file} -vn -c copy {output}")
         shutil.copy(output.path, dest)

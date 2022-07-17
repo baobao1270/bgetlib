@@ -111,6 +111,9 @@ class QualityOptions:
     #: Enable 8K QHD
     qhd_8k: bool = field(default=True)
 
+    #: Enable FLAC, PLEASE KEEP READ ONLY IN Codec Class
+    flac_audio: bool = field(default=False)
+
     @property
     def quality_flag(self):
         flag = QUALITY_FLAG_DASH | QUALITY_FLAG_8K
