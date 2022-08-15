@@ -30,7 +30,7 @@ class TempFile:
 
 def _run(args: str) -> subprocess.CompletedProcess:
     command = f'"{find_ffmpeg()}" -y -hide_banner {args}'
-    result = subprocess.run(command, capture_output=True, check=True)
+    result = subprocess.run(command, shell=True, capture_output=True, check=True)
     return result
 
 

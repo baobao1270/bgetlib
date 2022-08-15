@@ -10,7 +10,7 @@ with open("requirements.txt", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name=bgetlib.__title__,
-    version=os.environ.get("BUILD_VERSION", "3.2.3"),
+    version=os.environ.get("BUILD_VERSION", "3.2.4"),
     author=bgetlib.__author__,
     author_email=bgetlib.__author_email__,
     description=bgetlib.__description__,
