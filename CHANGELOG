@@ -1,6 +1,7 @@
-[3.2.6]
+[3.2.7]
  Updated 2022-08-14
   - [FIX] FFmpeg command not found on linux
+  - [FIX] Fix the bug of only FLAC videos can be downloaded
 
 [3.2.5]
  Updated 2022-07-16
