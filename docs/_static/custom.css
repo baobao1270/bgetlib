@@ -1,0 +1,20 @@
+div.body dd {
+    text-align: left !important;
+}
+
+dl.py.method {
+    margin-right: 6em;
+}
+
+dl.py.method .viewcode-link {
+    position: relative;
+    left: 6em;
+}
+
+dl.py.class {
+    margin-bottom: 100px;
+}
+
+.sphinxsidebarwrapper {
+    padding: 10px 8px !important;
+}
