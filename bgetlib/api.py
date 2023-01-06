@@ -108,7 +108,7 @@ class BilibiliAPI:
                 result_quality.h265 = True
 
         result_quality.dolby_vision = (video["id"] == 126)
-        result_quality.dolby_audio = (stream_urls.get("dolby", None) is not None)
+        result_quality.dolby_audio = (stream_urls.get("dolby", {}).get("audio") is not None)
         result_quality.flac_audio = (stream_urls.get("flac", None) is not None)
         if result_quality.dolby_audio:
             audio = stream_urls["dolby"]["audio"][0]
